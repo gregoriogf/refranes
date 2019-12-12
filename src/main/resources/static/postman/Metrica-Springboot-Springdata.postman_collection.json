@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "abd2b0a3-c0f6-40da-a872-d012740a02be",
+		"name": "Metrica-Springboot-Springdata",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1-mejorRefran",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/mejor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"mejor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Obtener numero refranes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/3/DESC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"3",
+						"DESC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-Numero de refranes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/numeroTotal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"numeroTotal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-Refrán aleatorio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/aleatorio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"aleatorio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-Refránes ordenados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/ordenar/DESC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"ordenar",
+						"DESC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6-Insertar Refrán",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"texto\": \"En Septiembre, cosecha y no siembres\",\n \"calidad\": 18,\n \"usuario\": \"sb_postman\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7-Borrar refrán",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"11"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
