@@ -39,8 +39,10 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 
 	@Override
 	public List<RefranDTO> getRefranes(final int numeroRefranes, final String order) {
-		log.log(Level.INFO, "Obteniendo {0} refranes pedidos. Criterio de ordenación: {1}. ",
-				new Object[] { numeroRefranes, order });
+
+		log.log(Level.INFO, () -> String.format("Obteniendo %s refranes pedidos. Criterio de ordenación: %s. ",
+				numeroRefranes, order));
+
 		final Stream<RefranDTO> str = sortRefranesList(order, inMemoryRefranes.getRefranes()).stream();
 		return str.limit(numeroRefranes).collect(Collectors.toList());
 	}

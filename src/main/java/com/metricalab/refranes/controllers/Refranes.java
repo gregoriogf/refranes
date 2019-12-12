@@ -47,15 +47,17 @@ public class Refranes {
 	@GetMapping("/refranes/{numero}/{order}")
 	public ResponseEntity<List<RefranDTO>> refranes(@PathVariable final Integer numero,
 			@PathVariable final String order) {
-		log.log(Level.INFO,
-				"Llamada al endpoint /refranes/{numero}/{order}. Se quieren recuperar {0} refranes con ordenación {1} .",
-				new Object[] { numero, order });
+		// Logger con expresion lambda
+		log.log(Level.INFO, () -> String.format(
+				"Llamada al endpoint /refranes/{numero}/{order}. Se quieren recuperar %s refranes con ordenación %s .",
+				numero, order));
 		return new ResponseEntity<>(refranService.getRefranes(numero, order), HttpStatus.OK);
 	}
 
 	@GetMapping("/refranes/numeroTotal")
 	public ResponseEntity<NumRefranes> numerorefranes() {
 		log.log(Level.INFO, "Llamada al endpoint /numerorefranes");
+
 		return new ResponseEntity<>(new NumRefranes(refranService.getNumRefranes()), HttpStatus.OK);
 	}
 
