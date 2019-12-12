@@ -2,16 +2,16 @@ package com.metricalab.refranes.pojo;
 
 import java.util.List;
 
-public class InitData {
+public class InMemoryRefranes {
 
-	private List<Refran> refranes;
+	private List<RefranDTO> refranes;
 	private int maxRefranes = 10;
 
-	public List<Refran> getRefranes() {
+	public List<RefranDTO> getRefranes() {
 		return refranes;
 	}
 
-	public void setRefranes(List<Refran> refranes) {
+	public void setRefranes(List<RefranDTO> refranes) {
 		this.refranes = refranes;
 	}
 

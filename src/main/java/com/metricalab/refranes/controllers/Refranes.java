@@ -1,6 +1,8 @@
 package com.metricalab.refranes.controllers;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,43 +19,70 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.metricalab.refranes.pojo.NumeroRefranes;
-import com.metricalab.refranes.pojo.Refran;
+import com.metricalab.refranes.pojo.NumRefranes;
+import com.metricalab.refranes.pojo.RefranDTO;
 import com.metricalab.refranes.pojo.RefranResponse;
-import com.metricalab.refranes.service.RefranService;
+import com.metricalab.refranes.service.IRefranService;
 
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH })
 @RestController
-@RequestMapping("/metrica")
+@RequestMapping("/api")
 public class Refranes {
 
-	@Autowired
-	RefranService refranService;
+	private static final Logger log = Logger.getLogger(Refranes.class.getName());
 
-	@GetMapping("/mejorrefran")
-	public ResponseEntity<Refran> refran() {
+	// Si no se configura al iniciar la aplicación se puede
+	// seleccionar la implementación a utilizar mediante un Qualifier.
+	// @Qualifier("inMemory")
+	// @Qualifier("dataBase")
+	@Autowired
+	IRefranService refranService;
+
+	@GetMapping("/refranes/mejor")
+	public ResponseEntity<RefranDTO> mejorRefran() {
+		log.log(Level.INFO, "Llamada al endpoint /mejorrefran ");
 		return new ResponseEntity<>(refranService.getBestRefran(), HttpStatus.OK);
 	}
 
-	@GetMapping("/refranes/{numero}")
-	public ResponseEntity<List<Refran>> refranes(@PathVariable final Integer numero) {
-		return new ResponseEntity<>(refranService.getRefranes(numero), HttpStatus.OK);
+	@GetMapping("/refranes/{numero}/{order}")
+	public ResponseEntity<List<RefranDTO>> refranes(@PathVariable final Integer numero,
+			@PathVariable final String order) {
+		log.log(Level.INFO,
+				"Llamada al endpoint /refranes/{numero}/{order}. Se quieren recuperar {0} refranes con ordenación {1} .",
+				new Object[] { numero, order });
+		return new ResponseEntity<>(refranService.getRefranes(numero, order), HttpStatus.OK);
 	}
 
-	@GetMapping("/numerorefranes")
-	public ResponseEntity<NumeroRefranes> numerorefranes() {
-		return new ResponseEntity<>(new NumeroRefranes(refranService.getnumRefranes()), HttpStatus.OK);
+	@GetMapping("/refranes/numeroTotal")
+	public ResponseEntity<NumRefranes> numerorefranes() {
+		log.log(Level.INFO, "Llamada al endpoint /numerorefranes");
+		return new ResponseEntity<>(new NumRefranes(refranService.getNumRefranes()), HttpStatus.OK);
 	}
 
-	@GetMapping("/refranes/random")
-	public ResponseEntity<Refran> refranRandom() {
-		return new ResponseEntity<>(refranService.getRefranRandom(), HttpStatus.OK);
+	@GetMapping("/refranes/aleatorio")
+	public ResponseEntity<RefranDTO> refranRandom() {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/aleatorio");
+		return new ResponseEntity<>(refranService.getRandomRefran(), HttpStatus.OK);
 	}
 
-	@PostMapping("/refran/add")
-	public ResponseEntity<RefranResponse> addRefran(@Valid @RequestBody final Refran refran) {
-		final String respuesta = refranService.addRefran(refran) == 0 ? " Refran insertado " : " Error al insertar";
+	@GetMapping("/refranes/ordenar/{order}")
+	public ResponseEntity<List<RefranDTO>> ordenarRefranes(@PathVariable final String order) {
+		log.log(Level.INFO, "Llamada al endpoint /ordenar/refranes");
+		return new ResponseEntity<>(refranService.sortRefranes(order), HttpStatus.OK);
+	}
+
+	@PostMapping("/refranes")
+	public ResponseEntity<RefranResponse> addRefran(@Valid @RequestBody final RefranDTO refran) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes (POST)");
+		final String respuesta = refranService.addRefran(refran) != null ? " Refran insertado " : " Error al insertar ";
 		return new ResponseEntity<>(new RefranResponse(respuesta), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/refranes/{id}")
+	public ResponseEntity<RefranResponse> deleteRefran(@PathVariable final Long id) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/{id} (DELETE)");
+		refranService.deleteRefran(id);
+		return new ResponseEntity<>(new RefranResponse("Refran con id: " + id + " borrado"), HttpStatus.OK);
 	}
 
 }

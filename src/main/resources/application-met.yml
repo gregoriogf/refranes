@@ -4,4 +4,9 @@ server:
   servlet:
     context-path: 
               /metrica  
-    
+logging:
+  level:
+    root:
+      INFO
+  file:
+    refranes-met.log

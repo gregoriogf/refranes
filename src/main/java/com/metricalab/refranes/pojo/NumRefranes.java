@@ -1,10 +1,10 @@
 package com.metricalab.refranes.pojo;
 
-public class NumeroRefranes {
+public class NumRefranes {
 
 	int numero;
 
-	public NumeroRefranes(int numeroRefranes) {
+	public NumRefranes(int numeroRefranes) {
 		this.numero = numeroRefranes;
 	}
 
