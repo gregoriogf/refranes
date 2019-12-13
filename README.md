@@ -8,7 +8,7 @@ Refranes es un proyecto tipo CRUD que permite consultar los refranes guardados e
 
 Existen multitud de tecnologías y conceptos incluidos en el código entre las que destacan:
 
- * Proyecto Maven para Java 8/11 ó superior
+ * Proyecto Maven para Java 11 (compatible con java 8 modificando el pom.xml)
  * Spring 5 con SpringBoot 2.2
  * Multitud de notaciones Spring (Autowired, Qualifier, RestController...)
  * Spring Data
@@ -54,5 +54,20 @@ spring:
 ```
 Se encuentran los valores de conexión.
 
+## Lanzar el proyecto
 
+Para lanzar el proyecto es necesarui hacer clic en el proyecto desde el IDE e ir a: **Run As -> Spring Boot App**
+
+El proyecto corre por defecto por el puerto **8090** accediendo al fichero **aplication.yml** se puede cambiar este parámetro
+
+## Adaptación a JAVA 8
+
+Este proyecto es compatible con JAVA 8 siempre que se realice una pequeña modificación en el **pom.xml** del proyecto. 
+Este fichero está localizado en la raiz de la carpeta (refranes). Es necesario modifcar la sección properties y substituir 11 por 8.
+```
+	<properties>
+		<java.version>8</java.version>
+	</properties>
+ ```
+Después del cambio es necesario relanzar el proyecto.
 
