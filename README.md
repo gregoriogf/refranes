@@ -71,3 +71,13 @@ Este fichero está localizado en la raiz de la carpeta (refranes). Es necesario 
  ```
 Después del cambio es necesario relanzar el proyecto.
 
+## Uso de Postman
+
+Es recomendable utilizar postman. Esta aplicación incorpora en la ruta:
+
+```
+../refranes/src/main/resources/static/postman
+```
+
+Un fichero llamado **Metrica-Springboot-Springdata.postman_collection.json** que contiene todas las llamadas posibles realizables tanto en local como en el servidor juanonlab.com . Para hacer uso de este json es necesario abrir postman y en la parte superior derecha de Postman hacer clic en **import** y arrastrar este fichero json.
+
