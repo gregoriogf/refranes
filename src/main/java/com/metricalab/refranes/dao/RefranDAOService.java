@@ -63,12 +63,14 @@ public class RefranDAOService implements IRefranDAOService {
 	@Override
 	@Transactional
 	public Refran addRefran(final Refran refran) {
+
 		return repository.save(refran);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Optional<List<Refran>> sortRefranes(final String order) {
+
 		return ConstantsData.ASCENDENTE.equalsIgnoreCase(order) ? repository.findAllByOrderByCalidadAsc()
 				: repository.findAllByOrderByCalidadDesc();
 	}
