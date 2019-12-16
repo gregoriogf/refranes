@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metricalab.refranes.entity.Refran;
 import com.metricalab.refranes.exception.DataBaseException;
@@ -22,16 +23,19 @@ public class RefranDAOService implements IRefranDAOService {
 	private IRefranDAO repository;
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<Refran> getBestRefran() {
 		return repository.findFirstByOrderByCalidadDesc();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<Refran> getRandomRefran() {
 		return repository.findRandom();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<List<Refran>> getRefranes(int numRefranes, String order) {
 		// Es un ejemplo de diferentes llamadas al repositorio
 		// dependiendo del numero de refranes a buscar
@@ -50,22 +54,26 @@ public class RefranDAOService implements IRefranDAOService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Long getNumRefranes() {
 		return repository.count();
 	}
 
 	@Override
+	@Transactional
 	public Refran addRefran(Refran refran) {
 		return repository.save(refran);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<List<Refran>> sortRefranes(String order) {
 		return ConstantsData.ASCENDENTE.equalsIgnoreCase(order) ? repository.findAllByOrderByCalidadAsc()
 				: repository.findAllByOrderByCalidadDesc();
 	}
 
 	@Override
+	@Transactional
 	public void deleteRefran(Long id) {
 		final Refran ref = repository.findById(id)
 				.orElseThrow(() -> new DataBaseException(ConstantsData.CODE_ERR_SEARCH_REFRAN,
