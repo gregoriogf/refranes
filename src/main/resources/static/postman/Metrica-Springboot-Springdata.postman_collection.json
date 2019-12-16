@@ -100,7 +100,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/metrica/api/refranes/ordenar/DESC",
+					"raw": "http://localhost:8090/metrica/api/refranes/ordenar/ASC",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,7 +111,7 @@
 						"api",
 						"refranes",
 						"ordenar",
-						"DESC"
+						"ASC"
 					]
 				}
 			},
@@ -175,6 +175,188 @@
 						"api",
 						"refranes",
 						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "01-mejorRefran Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes/mejor",
+					"protocol": "https",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes",
+						"mejor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02-Obtener numero refranes Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.juanonlab.com/metricasb/api/refranes/3/DESC",
+					"protocol": "http",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes",
+						"3",
+						"DESC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03-Numero de refranes Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes/numeroTotal",
+					"protocol": "https",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes",
+						"numeroTotal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04-Refrán aleatorio Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes/aleatorio",
+					"protocol": "https",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes",
+						"aleatorio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "05-Refránes ordenados Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes/ordenar/DESC",
+					"protocol": "https",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes",
+						"ordenar",
+						"DESC"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "06-Insertar Refrán Server",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"texto\": \"En Septiembre, cosecha y no siembres\",\n \"calidad\": 18,\n \"usuario\": \"sb_postman\"\n}"
+				},
+				"url": {
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes",
+					"protocol": "https",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "07-Borrar refrán Server",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes/12",
+					"protocol": "https",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes",
+						"12"
 					]
 				}
 			},
