@@ -42,7 +42,8 @@ public class RefranDAOService implements IRefranDAOService {
 			refranes = repository.findTop10ByOrderByCalidad();
 		} else {
 			final Page<Refran> page = repository.findAll(PageRequest.of(0, numRefranes,
-					Sort.by("ASC".equalsIgnoreCase(order) ? Sort.Direction.ASC : Sort.Direction.DESC, "calidad")));
+					Sort.by(ConstantsData.ASCENDENTE.equalsIgnoreCase(order) ? Sort.Direction.ASC : Sort.Direction.DESC,
+							"calidad")));
 			refranes = Optional.of(page.get().collect(Collectors.toList()));
 		}
 		return refranes;
@@ -60,7 +61,7 @@ public class RefranDAOService implements IRefranDAOService {
 
 	@Override
 	public Optional<List<Refran>> sortRefranes(String order) {
-		return "ASC".equalsIgnoreCase(order) ? repository.findAllByOrderByCalidadAsc()
+		return ConstantsData.ASCENDENTE.equalsIgnoreCase(order) ? repository.findAllByOrderByCalidadAsc()
 				: repository.findAllByOrderByCalidadDesc();
 	}
 
