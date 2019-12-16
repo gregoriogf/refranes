@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,8 +34,8 @@ public class Refranes {
 
 	// Si no se configura al iniciar la aplicación se puede
 	// seleccionar la implementación a utilizar mediante un Qualifier.
-	// @Qualifier("inMemory")
-	// @Qualifier("dataBase")
+//	@Qualifier("inMemory")
+	@Qualifier("dataBase")
 	@Autowired
 	IRefranService refranService;
 
@@ -85,6 +86,18 @@ public class Refranes {
 		log.log(Level.INFO, "Llamada al endpoint /refranes/{id} (DELETE)");
 		refranService.deleteRefran(id);
 		return new ResponseEntity<>(new RefranResponse("Refran con id: " + id + " borrado"), HttpStatus.OK);
+	}
+
+	@GetMapping("/refranes/{id}")
+	public ResponseEntity<RefranDTO> findById(@PathVariable final Long id) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/{id} (GET)");
+		return new ResponseEntity<>(refranService.getRefranById(id), HttpStatus.OK);
+	}
+
+	@GetMapping("/refranes/user/{user}")
+	public ResponseEntity<List<RefranDTO>> findByUser(@PathVariable final String user) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/user/{user} (GET)");
+		return new ResponseEntity<>(refranService.getRefranByUser(user), HttpStatus.OK);
 	}
 
 }

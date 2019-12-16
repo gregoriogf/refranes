@@ -32,7 +32,7 @@ public class RefranDAOService implements IRefranDAOService {
 	}
 
 	@Override
-	public Optional<List<Refran>> getRefranes(int numRefranes, String order) {
+	public Optional<List<Refran>> getRefranes(final int numRefranes, final String order) {
 		// Es un ejemplo de diferentes llamadas al repositorio
 		// dependiendo del numero de refranes a buscar
 		Optional<List<Refran>> refranes = null;
@@ -54,22 +54,32 @@ public class RefranDAOService implements IRefranDAOService {
 	}
 
 	@Override
-	public Refran addRefran(Refran refran) {
+	public Refran addRefran(final Refran refran) {
 		return repository.save(refran);
 	}
 
 	@Override
-	public Optional<List<Refran>> sortRefranes(String order) {
+	public Optional<List<Refran>> sortRefranes(final String order) {
 		return "ASC".equalsIgnoreCase(order) ? repository.findAllByOrderByCalidadAsc()
 				: repository.findAllByOrderByCalidadDesc();
 	}
 
 	@Override
-	public void deleteRefran(Long id) {
+	public void deleteRefran(final Long id) {
 		final Refran ref = repository.findById(id)
 				.orElseThrow(() -> new DataBaseException(ConstantsData.CODE_ERR_SEARCH_REFRAN,
 						ConstantsData.MESS_ERR_SEARCH_REFRAN, HttpStatus.NOT_FOUND));
 		repository.delete(ref);
+	}
+
+	@Override
+	public Optional<Refran> getRefranById(final Long id) {
+		return repository.findById(id);
+	}
+
+	@Override
+	public Optional<List<Refran>> getRefranByUser(final String user) {
+		return repository.findByUsuario(user);
 	}
 
 }
