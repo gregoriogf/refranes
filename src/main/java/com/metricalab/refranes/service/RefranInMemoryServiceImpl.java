@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.metricalab.refranes.pojo.InMemoryRefranes;
 import com.metricalab.refranes.pojo.RefranDTO;
+import com.metricalab.refranes.utils.ConstantsData;
 
 @Service
 @Qualifier("inMemory")
@@ -85,7 +86,7 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 	 */
 	private List<RefranDTO> sortRefranesList(final String order, final List<RefranDTO> refranes) {
 
-		if ("ASC".equalsIgnoreCase(order)) {
+		if (ConstantsData.ASCENDENTE.equalsIgnoreCase(order)) {
 			Collections.sort(refranes,
 					Comparator.comparing(p -> p.getCalidad(), Comparator.nullsLast(Comparator.naturalOrder())));
 		} else {

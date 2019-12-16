@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.metricalab.refranes.entity.Refran;
 import com.metricalab.refranes.exception.DataBaseException;
@@ -22,17 +23,21 @@ public class RefranDAOService implements IRefranDAOService {
 	private IRefranDAO repository;
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<Refran> getBestRefran() {
 		return repository.findFirstByOrderByCalidadDesc();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<Refran> getRandomRefran() {
 		return repository.findRandom();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<List<Refran>> getRefranes(final int numRefranes, final String order) {
+
 		// Es un ejemplo de diferentes llamadas al repositorio
 		// dependiendo del numero de refranes a buscar
 		Optional<List<Refran>> refranes = null;
@@ -42,29 +47,34 @@ public class RefranDAOService implements IRefranDAOService {
 			refranes = repository.findTop10ByOrderByCalidad();
 		} else {
 			final Page<Refran> page = repository.findAll(PageRequest.of(0, numRefranes,
-					Sort.by("ASC".equalsIgnoreCase(order) ? Sort.Direction.ASC : Sort.Direction.DESC, "calidad")));
+					Sort.by(ConstantsData.ASCENDENTE.equalsIgnoreCase(order) ? Sort.Direction.ASC : Sort.Direction.DESC,
+							"calidad")));
 			refranes = Optional.of(page.get().collect(Collectors.toList()));
 		}
 		return refranes;
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Long getNumRefranes() {
 		return repository.count();
 	}
 
 	@Override
+	@Transactional
 	public Refran addRefran(final Refran refran) {
 		return repository.save(refran);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<List<Refran>> sortRefranes(final String order) {
-		return "ASC".equalsIgnoreCase(order) ? repository.findAllByOrderByCalidadAsc()
+		return ConstantsData.ASCENDENTE.equalsIgnoreCase(order) ? repository.findAllByOrderByCalidadAsc()
 				: repository.findAllByOrderByCalidadDesc();
 	}
 
 	@Override
+	@Transactional
 	public void deleteRefran(final Long id) {
 		final Refran ref = repository.findById(id)
 				.orElseThrow(() -> new DataBaseException(ConstantsData.CODE_ERR_SEARCH_REFRAN,
