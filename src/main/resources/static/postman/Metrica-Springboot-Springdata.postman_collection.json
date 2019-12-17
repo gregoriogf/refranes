@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "abd2b0a3-c0f6-40da-a872-d012740a02be",
+		"_postman_id": "a34b3e97-aa81-4d0d-9132-dd5b9a4ae661",
 		"name": "Metrica-Springboot-Springdata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -175,6 +175,51 @@
 						"api",
 						"refranes",
 						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8-Buscar por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9-Buscar por usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/user/sb_memory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"user",
+						"sb_memory"
 					]
 				}
 			},

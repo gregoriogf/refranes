@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,8 +33,8 @@ public class Refranes {
 
 	// Si no se configura al iniciar la aplicación se puede
 	// seleccionar la implementación a utilizar mediante un Qualifier.
-//	@Qualifier("inMemory")
-	@Qualifier("dataBase")
+	// @Qualifier("inMemory")
+	// @Qualifier("dataBase")
 	@Autowired
 	IRefranService refranService;
 
