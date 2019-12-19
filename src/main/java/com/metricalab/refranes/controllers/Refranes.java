@@ -87,4 +87,26 @@ public class Refranes {
 		return new ResponseEntity<>(new RefranResponse("Refran con id: " + id + " borrado"), HttpStatus.OK);
 	}
 
+	@GetMapping("/refranes/encontrarRefran/{texto}")
+	public ResponseEntity<List<RefranDTO>> buscarRefran(@PathVariable final String texto) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/encontrarRefran/{texto}");
+		return new ResponseEntity<>(refranService.getContainsRefran(texto), HttpStatus.OK);
+
+	}
+
+	@GetMapping("/refranes/encontrarUsuario/{usuario}")
+	public ResponseEntity<List<RefranDTO>> encontrarUsuario(@PathVariable final String usuario) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/encontrarUsuario/{usuario}");
+		return new ResponseEntity<>(refranService.getContainsUsuario(usuario), HttpStatus.OK);
+	}
+
+	@GetMapping("/refranes/encontrarUsuarioOrder/{usuario}/{order}")
+	public ResponseEntity<List<RefranDTO>> encontrarUsuarioOrder(@PathVariable final String usuario,
+			@PathVariable final String order) {
+		log.log(Level.INFO, () -> String.format(
+				"Llamada al endpoint /refranes/{usuario}/{order}. Se quieren recuperar %s refranes con ordenación %s .",
+				usuario, order));
+		return new ResponseEntity<>(refranService.getContainsUsuarioOrder(usuario, order), HttpStatus.OK);
+	}
+
 }

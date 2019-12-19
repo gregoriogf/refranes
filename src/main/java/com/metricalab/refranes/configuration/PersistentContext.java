@@ -41,8 +41,7 @@ public class PersistentContext {
 				ConstantsData.SPRING_BOOT_MEMORY));
 		listaRefranes.add(new RefranDTO(Long.valueOf(9), "Antes se coge al mentiroso que al cojo", 8,
 				ConstantsData.SPRING_BOOT_MEMORY));
-		listaRefranes.add(
-				new RefranDTO(Long.valueOf(10), "Burro grande, ande o no ande", 2, ConstantsData.SPRING_BOOT_MEMORY));
+		listaRefranes.add(new RefranDTO(Long.valueOf(10), "Burro grande, ande o no ande", 2, "Jose"));
 
 		final InMemoryRefranes inMemoryRefranes = new InMemoryRefranes();
 		inMemoryRefranes.setRefranes(listaRefranes);

@@ -68,4 +68,25 @@ public class RefranDataBaseServiceImpl implements IRefranService {
 		refranDAOService.deleteRefran(id);
 	}
 
+	@Override
+	public List<RefranDTO> getContainsRefran(final String texto) {
+		log.log(Level.INFO, "Buscar Refrán", texto);
+		return refranConverter.convert(refranDAOService.getRefranesContiene(texto).orElse(null));
+
+	}
+
+	@Override
+	public List<RefranDTO> getContainsUsuario(final String usuario) {
+		log.log(Level.INFO, "Buscar Usuario", usuario);
+		return refranConverter.convert(refranDAOService.getRefranesUsuarioContiene(usuario).orElse(null));
+	}
+
+	@Override
+	public List<RefranDTO> getContainsUsuarioOrder(final String usuario, final String order) {
+		log.log(Level.INFO, "Buscar Usuario %s", usuario);
+		log.log(Level.INFO, "Ordenado de manera %s ", order);
+		return refranConverter
+				.convert(refranDAOService.getRefranesUsuarioContieneOrdenado(usuario, order).orElse(null));
+	}
+
 }

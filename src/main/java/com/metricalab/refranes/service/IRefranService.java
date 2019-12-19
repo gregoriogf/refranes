@@ -19,4 +19,11 @@ public interface IRefranService {
 	public List<RefranDTO> sortRefranes(String order);
 
 	public void deleteRefran(Long id);
+
+	public List<RefranDTO> getContainsRefran(String texto);
+
+	public List<RefranDTO> getContainsUsuario(String usuario);
+
+	public List<RefranDTO> getContainsUsuarioOrder(String usuario, String order);
+
 }

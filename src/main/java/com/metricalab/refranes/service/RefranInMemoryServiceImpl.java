@@ -40,10 +40,8 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 
 	@Override
 	public List<RefranDTO> getRefranes(final int numeroRefranes, final String order) {
-
 		log.log(Level.INFO, () -> String.format("Obteniendo %s refranes pedidos. Criterio de ordenación: %s. ",
 				numeroRefranes, order));
-
 		final Stream<RefranDTO> str = sortRefranesList(order, inMemoryRefranes.getRefranes()).stream();
 		return str.limit(numeroRefranes).collect(Collectors.toList());
 	}
@@ -94,6 +92,29 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 					Comparator.comparing(p -> p.getCalidad(), Comparator.nullsLast(Comparator.reverseOrder())));
 		}
 		return refranes;
+	}
+
+	@Override
+	public List<RefranDTO> getContainsRefran(String texto) {
+		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
+		return refranes.stream().filter(refran -> refran.getTexto().toLowerCase().contains(texto.toLowerCase()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<RefranDTO> getContainsUsuario(String usuario) {
+		log.log(Level.INFO, () -> String.format("Obteniendo usuario %s ", usuario));
+		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
+		return refranes.stream().filter(refran -> refran.getUsuario().toLowerCase().contains(usuario.toLowerCase()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<RefranDTO> getContainsUsuarioOrder(String usuario, String order) {
+		log.log(Level.INFO,
+				() -> String.format("Obteniendo usuario %s . Criterio de ordenación: %s. ", usuario, order));
+		final List<RefranDTO> busqueda = getContainsUsuario(usuario);
+		return sortRefranesList(order, busqueda);
 	}
 
 }

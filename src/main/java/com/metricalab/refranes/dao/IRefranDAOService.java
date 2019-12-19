@@ -20,4 +20,11 @@ public interface IRefranDAOService {
 	public Optional<List<Refran>> sortRefranes(final String order);
 
 	public void deleteRefran(final Long id);
+
+	public Optional<List<Refran>> getRefranesContiene(final String texto);
+
+	public Optional<List<Refran>> getRefranesUsuarioContiene(final String usuario);
+
+	public Optional<List<Refran>> getRefranesUsuarioContieneOrdenado(final String usuario, final String order);
+
 }

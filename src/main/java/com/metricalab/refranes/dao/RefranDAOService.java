@@ -81,4 +81,32 @@ public class RefranDAOService implements IRefranDAOService {
 		repository.delete(ref);
 	}
 
+	@Override
+	public Optional<List<Refran>> getRefranesContiene(String texto) {
+		return repository.findByTextoContainingIgnoreCase(texto);
+
+	}
+
+	@Override
+	public Optional<List<Refran>> getRefranesUsuarioContiene(String usuario) {
+		return repository.findByUsuarioContainingIgnoreCase(usuario);
+
+	}
+
+	@Override
+	public Optional<List<Refran>> getRefranesUsuarioContieneOrdenado(String usuario, String order) {
+
+		Optional<List<Refran>> ord = null;
+
+		if (ConstantsData.ASCENDENTE.equalsIgnoreCase(order)) {
+			ord = repository.findByUsuarioContainingIgnoreCaseOrderByUsuarioAsc(usuario);
+		} else if (ConstantsData.DESCENDENTE.equalsIgnoreCase(order)) {
+			ord = repository.findByUsuarioContainingIgnoreCaseOrderByUsuarioDesc(usuario);
+
+		}
+
+		return ord;
+
+	}
+
 }
