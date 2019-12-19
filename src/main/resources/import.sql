@@ -3,7 +3,7 @@ INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('A caballo 
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('A falta de pan, buenas son tortas ', 4, '2019-03-20', 'sb_bbdd');
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('A la arrogancia en el pedir, la virtud del no dar', 12, '2018-1-11', 'sb_bbdd');
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('A la tercera va la vencida ', 3, '2019-07-21', 'sb_bbdd');
-INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('A palabras necias, oídos sordos ', 5, '2017-12-03', 'Juan');
+INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('A palabras necias, oídos sordos ', 5, '2017-12-03', 'sb_bbdd');
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('Al pan, pan, y al vino, vino ', 11, '2018-05-19', 'sb_bbdd');
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('Al perro flaco, todo se le vuelven pulgas ', 1, '2013-07-12', 'sb_bbdd');
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('Al que Dios se la dé, San Pedro se la bendiga ', 9, '2014-07-30', 'sb_bbdd');
