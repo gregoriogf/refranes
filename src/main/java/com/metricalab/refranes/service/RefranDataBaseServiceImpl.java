@@ -38,7 +38,7 @@ public class RefranDataBaseServiceImpl implements IRefranService {
 	}
 
 	@Override
-	public List<RefranDTO> getRefranes(int numRefranes, final String order) {
+	public List<RefranDTO> getRefranes(final int numRefranes, final String order) {
 		log.log(Level.INFO, "Obteniendo {0} refranes pedidos.", numRefranes);
 		return refranConverter.convert(refranDAOService.getRefranes(numRefranes, order).orElse(null));
 	}
@@ -63,9 +63,21 @@ public class RefranDataBaseServiceImpl implements IRefranService {
 	}
 
 	@Override
-	public void deleteRefran(Long id) {
+	public void deleteRefran(final Long id) {
 		log.log(Level.INFO, "Borrar refrán con id: {0} ", id);
 		refranDAOService.deleteRefran(id);
+	}
+
+	@Override
+	public RefranDTO getRefranById(final Long id) {
+		log.log(Level.INFO, "Buscar refrán con id {0}", id);
+		return refranConverter.convert(refranDAOService.getRefranById(id).orElse(null));
+	}
+
+	@Override
+	public List<RefranDTO> getRefranByUser(final String user) {
+		log.log(Level.INFO, "Buscar refrán por el username {0}", user);
+		return refranConverter.convert(refranDAOService.getRefranByUser(user).orElse(null));
 	}
 
 	@Override
@@ -87,6 +99,7 @@ public class RefranDataBaseServiceImpl implements IRefranService {
 		log.log(Level.INFO, "Ordenado de manera %s ", order);
 		return refranConverter
 				.convert(refranDAOService.getRefranesUsuarioContieneOrdenado(usuario, order).orElse(null));
+
 	}
 
 }

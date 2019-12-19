@@ -20,6 +20,10 @@ public interface IRefranService {
 
 	public void deleteRefran(Long id);
 
+	public RefranDTO getRefranById(Long id);
+
+	public List<RefranDTO> getRefranByUser(String user);
+
 	public List<RefranDTO> getContainsRefran(String texto);
 
 	public List<RefranDTO> getContainsUsuario(String usuario);

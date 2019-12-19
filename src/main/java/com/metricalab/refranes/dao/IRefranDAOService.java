@@ -21,6 +21,10 @@ public interface IRefranDAOService {
 
 	public void deleteRefran(final Long id);
 
+	public Optional<Refran> getRefranById(Long id);
+
+	public Optional<List<Refran>> getRefranByUser(String user);
+
 	public Optional<List<Refran>> getRefranesContiene(final String texto);
 
 	public Optional<List<Refran>> getRefranesUsuarioContiene(final String usuario);
