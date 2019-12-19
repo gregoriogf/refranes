@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.metricalab.refranes.pojo.InMemoryRefranes;
 import com.metricalab.refranes.pojo.RefranDTO;
+import com.metricalab.refranes.utils.ConstantsData;
 
 @Service
 @Qualifier("inMemory")
@@ -39,8 +40,10 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 
 	@Override
 	public List<RefranDTO> getRefranes(final int numeroRefranes, final String order) {
-		log.log(Level.INFO, "Obteniendo {0} refranes pedidos. Criterio de ordenación: {1}. ",
-				new Object[] { numeroRefranes, order });
+
+		log.log(Level.INFO, () -> String.format("Obteniendo %s refranes pedidos. Criterio de ordenación: %s. ",
+				numeroRefranes, order));
+
 		final Stream<RefranDTO> str = sortRefranesList(order, inMemoryRefranes.getRefranes()).stream();
 		return str.limit(numeroRefranes).collect(Collectors.toList());
 	}
@@ -52,7 +55,7 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 	}
 
 	@Override
-	public RefranDTO addRefran(RefranDTO refran) {
+	public RefranDTO addRefran(final RefranDTO refran) {
 		log.log(Level.INFO, "Insertando un nuevo refrán: {0}", refran.getTexto());
 		final Long maxValue = inMemoryRefranes.getRefranes().stream().mapToLong(x -> x.getId()).max().getAsLong();
 		refran.setId(maxValue + 1);
@@ -69,7 +72,7 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 	}
 
 	@Override
-	public void deleteRefran(Long id) {
+	public void deleteRefran(final Long id) {
 		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
 		refranes.removeIf(x -> x.getId().equals(id));
 	}
@@ -81,9 +84,9 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 	 * @param refranes Lista de refranes
 	 * @return Refranes ordenados
 	 */
-	private List<RefranDTO> sortRefranesList(final String order, List<RefranDTO> refranes) {
+	private List<RefranDTO> sortRefranesList(final String order, final List<RefranDTO> refranes) {
 
-		if ("ASC".equalsIgnoreCase(order)) {
+		if (ConstantsData.ASCENDENTE.equalsIgnoreCase(order)) {
 			Collections.sort(refranes,
 					Comparator.comparing(p -> p.getCalidad(), Comparator.nullsLast(Comparator.naturalOrder())));
 		} else {
@@ -91,6 +94,27 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 					Comparator.comparing(p -> p.getCalidad(), Comparator.nullsLast(Comparator.reverseOrder())));
 		}
 		return refranes;
+	}
+
+	@Override
+	public RefranDTO getRefranById(final Long id) {
+		log.log(Level.INFO, "Buscar refrán con id {0}", id);
+		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
+
+		final RefranDTO result = refranes.stream().filter(refran -> id.equals(refran.getId())).findAny().orElse(null);
+
+		return result;
+	}
+
+	@Override
+	public List<RefranDTO> getRefranByUser(final String user) {
+		log.log(Level.INFO, "Buscar refrán por el username {0}", user);
+		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
+
+		final List<RefranDTO> result = refranes.stream().filter(refran -> refran.getUsuario().equals(user))
+				.collect(Collectors.toList());
+
+		return result;
 	}
 
 }
