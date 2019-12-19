@@ -10,5 +10,7 @@ INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('Al que Dio
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('Antes se coge al mentiroso que al cojo ', 8, '2012-03-08', 'sb_bbdd');
 INSERT INTO refranes (texto, calidad, ult_actualiz, usuario) VALUES ('Burro grande, ande o no ande ', 2, '2012-04-15', 'sb_bbdd');
 
+INSERT INTO log_refran(id,accion,verbo,fecha) VALUES (1,'act1','POST','2017-12-03');
+
 
 
