@@ -40,10 +40,8 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 
 	@Override
 	public List<RefranDTO> getRefranes(final int numeroRefranes, final String order) {
-
 		log.log(Level.INFO, () -> String.format("Obteniendo %s refranes pedidos. Criterio de ordenación: %s. ",
 				numeroRefranes, order));
-
 		final Stream<RefranDTO> str = sortRefranesList(order, inMemoryRefranes.getRefranes()).stream();
 		return str.limit(numeroRefranes).collect(Collectors.toList());
 	}
@@ -97,12 +95,11 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 	}
 
 	@Override
+
 	public RefranDTO getRefranById(final Long id) {
 		log.log(Level.INFO, "Buscar refrán con id {0}", id);
 		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
-
 		final RefranDTO result = refranes.stream().filter(refran -> id.equals(refran.getId())).findAny().orElse(null);
-
 		return result;
 	}
 
@@ -110,11 +107,32 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 	public List<RefranDTO> getRefranByUser(final String user) {
 		log.log(Level.INFO, "Buscar refrán por el username {0}", user);
 		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
-
 		final List<RefranDTO> result = refranes.stream().filter(refran -> refran.getUsuario().equals(user))
 				.collect(Collectors.toList());
-
 		return result;
+	}
+
+	@Override
+	public List<RefranDTO> getContainsRefran(String texto) {
+		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
+		return refranes.stream().filter(refran -> refran.getTexto().toLowerCase().contains(texto.toLowerCase()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<RefranDTO> getContainsUsuario(String usuario) {
+		log.log(Level.INFO, () -> String.format("Obteniendo usuario %s ", usuario));
+		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
+		return refranes.stream().filter(refran -> refran.getUsuario().toLowerCase().contains(usuario.toLowerCase()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<RefranDTO> getContainsUsuarioOrder(String usuario, String order) {
+		log.log(Level.INFO,
+				() -> String.format("Obteniendo usuario %s . Criterio de ordenación: %s. ", usuario, order));
+		final List<RefranDTO> busqueda = getContainsUsuario(usuario);
+		return sortRefranesList(order, busqueda);
 	}
 
 }

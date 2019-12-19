@@ -24,4 +24,11 @@ public interface IRefranDAOService {
 	public Optional<Refran> getRefranById(Long id);
 
 	public Optional<List<Refran>> getRefranByUser(String user);
+
+	public Optional<List<Refran>> getRefranesContiene(final String texto);
+
+	public Optional<List<Refran>> getRefranesUsuarioContiene(final String usuario);
+
+	public Optional<List<Refran>> getRefranesUsuarioContieneOrdenado(final String usuario, final String order);
+
 }
