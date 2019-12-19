@@ -87,4 +87,16 @@ public class Refranes {
 		return new ResponseEntity<>(new RefranResponse("Refran con id: " + id + " borrado"), HttpStatus.OK);
 	}
 
+	@GetMapping("/refranes/{id}")
+	public ResponseEntity<RefranDTO> findById(@PathVariable final Long id) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/{id} (GET)");
+		return new ResponseEntity<>(refranService.getRefranById(id), HttpStatus.OK);
+	}
+
+	@GetMapping("/refranes/user/{user}")
+	public ResponseEntity<List<RefranDTO>> findByUser(@PathVariable final String user) {
+		log.log(Level.INFO, "Llamada al endpoint /refranes/user/{user} (GET)");
+		return new ResponseEntity<>(refranService.getRefranByUser(user), HttpStatus.OK);
+	}
+
 }
