@@ -1,44 +1,17 @@
-package com.metricalab.refranes.entity;
+package com.metricalab.refranes.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class LogRefranDTO {
 
-@Entity
-@Table(name = "log_refran")
-public class LogRefran implements Serializable {
-
-	private static final long serialVersionUID = 873894166276508362L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
 	private long id;
-
-	@Column(nullable = false)
 	private String accion;
-
-	@Column(nullable = false)
 	private String verbo;
-
-	@Column(name = "fecha")
 	private Date fecha;
-
-	@Column(nullable = false)
 	private String descripcion;
 
-	public LogRefran() {
-
-	}
-
-	public LogRefran(String accion, String verbo, Date fecha, String descripcion) {
-		super();
+	public LogRefranDTO(long id, String accion, String verbo, Date fecha, String descripcion) {
+		this.id = id;
 		this.accion = accion;
 		this.verbo = verbo;
 		this.fecha = fecha;

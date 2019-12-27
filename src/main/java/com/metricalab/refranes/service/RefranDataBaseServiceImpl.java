@@ -6,12 +6,15 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.metricalab.refranes.converter.RefranConverter;
 import com.metricalab.refranes.dao.IRefranDAOService;
 import com.metricalab.refranes.entity.Refran;
+import com.metricalab.refranes.exception.DataBaseException;
 import com.metricalab.refranes.pojo.RefranDTO;
+import com.metricalab.refranes.utils.ConstantsData;
 
 @Service
 @Qualifier("dataBase")
@@ -28,6 +31,7 @@ public class RefranDataBaseServiceImpl implements IRefranService {
 	@Override
 	public RefranDTO getBestRefran() {
 		log.log(Level.INFO, "Obteniendo el mejor refrán");
+		// Llamar aki al servicio que me falta
 		return refranConverter.convert(refranDAOService.getBestRefran().orElse(null));
 	}
 
@@ -71,7 +75,9 @@ public class RefranDataBaseServiceImpl implements IRefranService {
 	@Override
 	public RefranDTO getRefranById(final Long id) {
 		log.log(Level.INFO, "Buscar refrán con id {0}", id);
-		return refranConverter.convert(refranDAOService.getRefranById(id).orElse(null));
+		return refranConverter.convert(refranDAOService.getRefranById(id)
+				.orElseThrow(() -> new DataBaseException(ConstantsData.CODE_ERR_SEARCH_REFRAN,
+						ConstantsData.MESS_ERR_SEARCH_REFRAN, HttpStatus.NOT_FOUND)));
 	}
 
 	@Override

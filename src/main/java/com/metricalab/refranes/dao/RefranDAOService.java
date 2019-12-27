@@ -86,6 +86,7 @@ public class RefranDAOService implements IRefranDAOService {
 
 	@Override
 	public Optional<Refran> getRefranById(final Long id) {
+
 		return repository.findById(id);
 	}
 

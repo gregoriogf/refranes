@@ -11,8 +11,10 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.metricalab.refranes.exception.DataBaseException;
 import com.metricalab.refranes.pojo.InMemoryRefranes;
 import com.metricalab.refranes.pojo.RefranDTO;
 import com.metricalab.refranes.utils.ConstantsData;
@@ -99,7 +101,9 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 	public RefranDTO getRefranById(final Long id) {
 		log.log(Level.INFO, "Buscar refrán con id {0}", id);
 		final List<RefranDTO> refranes = inMemoryRefranes.getRefranes();
-		final RefranDTO result = refranes.stream().filter(refran -> id.equals(refran.getId())).findAny().orElse(null);
+		final RefranDTO result = refranes.stream().filter(refran -> id.equals(refran.getId())).findAny()
+				.orElseThrow(() -> new DataBaseException(ConstantsData.CODE_ERR_SEARCH_REFRAN_IN_MEMORY,
+						ConstantsData.MESS_ERR_SEARCH_REFRAN_IN_MEMORY, HttpStatus.NOT_FOUND));
 		return result;
 	}
 
