@@ -23,4 +23,11 @@ public interface IRefranService {
 	public RefranDTO getRefranById(Long id);
 
 	public List<RefranDTO> getRefranByUser(String user);
+
+	public List<RefranDTO> getContainsRefran(String texto);
+
+	public List<RefranDTO> getContainsUsuario(String usuario);
+
+	public List<RefranDTO> getContainsUsuarioOrder(String usuario, String order);
+
 }

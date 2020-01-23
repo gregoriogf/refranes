@@ -25,4 +25,12 @@ public interface IRefranDAO extends JpaRepository<Refran, Long> {
 
 	Optional<List<Refran>> findByUsuario(String user);
 
+	Optional<List<Refran>> findByTextoContainingIgnoreCase(String texto);
+
+	Optional<List<Refran>> findByUsuarioContainingIgnoreCase(String usuario);
+
+	Optional<List<Refran>> findByUsuarioContainingIgnoreCaseOrderByUsuarioDesc(String usuario);
+
+	Optional<List<Refran>> findByUsuarioContainingIgnoreCaseOrderByUsuarioAsc(String usuario);
+
 }
