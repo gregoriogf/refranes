@@ -8,7 +8,7 @@ Refranes es un proyecto tipo CRUD que permite consultar los refranes guardados e
 
 Existen multitud de tecnologías y conceptos incluidos en el código entre las que destacan:
 
- * Proyecto Maven para Java 8/11 ó superior
+ * Proyecto Maven para Java 8 (compatible con java 11 modificando el pom.xml)
  * Spring 5 con SpringBoot 2.2
  * Multitud de notaciones Spring (Autowired, Qualifier, RestController...)
  * Spring Data
@@ -54,5 +54,30 @@ spring:
 ```
 Se encuentran los valores de conexión.
 
+## Lanzar el proyecto
 
+Para lanzar el proyecto es necesarui hacer clic en el proyecto desde el IDE e ir a: **Run As -> Spring Boot App**
+
+El proyecto corre por defecto por el puerto **8090** accediendo al fichero **aplication.yml** se puede cambiar este parámetro
+
+## Adaptación a JAVA 11
+
+Este proyecto es compatible con JAVA 11 siempre que se realice una pequeña modificación en el **pom.xml** del proyecto. 
+Este fichero está localizado en la raiz de la carpeta (refranes). Es necesario modifcar la sección properties y substituir 8 por 11.
+```
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+ ```
+Después del cambio es necesario relanzar el proyecto.
+
+## Uso de Postman
+
+Es recomendable utilizar postman. Esta aplicación incorpora en la ruta:
+
+```
+../refranes/src/main/resources/static/postman
+```
+
+Un fichero llamado **Metrica-Springboot-Springdata.postman_collection.json** que contiene todas las llamadas posibles realizables tanto en local como en el servidor juanonlab.com . Para hacer uso de este json es necesario abrir postman y en la parte superior derecha de Postman hacer clic en **import** y arrastrar este fichero json.
 

@@ -33,4 +33,6 @@ public interface IRefranDAO extends JpaRepository<Refran, Long> {
 
 	Optional<List<Refran>> findByUsuarioContainingIgnoreCaseOrderByUsuarioAsc(String usuario);
 
+	@Query(value = "SELECT avg(calidad) FROM refranes", nativeQuery = true)
+	public Double avg();
 }

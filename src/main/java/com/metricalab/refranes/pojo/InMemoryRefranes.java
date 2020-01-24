@@ -5,7 +5,7 @@ import java.util.List;
 public class InMemoryRefranes {
 
 	private List<RefranDTO> refranes;
-	private int maxRefranes = 10;
+	private int maxRefranes = 15;
 
 	public List<RefranDTO> getRefranes() {
 		return refranes;
