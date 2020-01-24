@@ -3,6 +3,7 @@ package com.metricalab.refranes.service;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -137,16 +138,9 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 
 	@Override
 	public Double getMediaCalidadRefranes() {
-		log.log(Level.INFO, "Obteniendo el número de refranes disponibles");
-		Double sum = new Double(0);
-		Double media = new Double(0);
-		List<RefranDTO> listaRefranes = inMemoryRefranes.getRefranes();
-		for (RefranDTO refranDTO : listaRefranes) {
-			sum += refranDTO.getCalidad();
-		}
-		media = Double.valueOf(sum/inMemoryRefranes.getRefranes().size());
-		
-		return media;
+		log.log(Level.INFO, "Obteniendo la media de calidad de los refranes");
+		final OptionalDouble avg = inMemoryRefranes.getRefranes().stream().mapToDouble(x -> x.getCalidad()).average();
+		return avg.orElse(0);
 	}
 
 }
