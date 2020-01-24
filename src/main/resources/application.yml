@@ -22,7 +22,7 @@ spring:
     username:
       root
     password:
-      
+      metrica123
     driver-class-name:
       org.mariadb.jdbc.Driver
   jpa:
@@ -35,7 +35,7 @@ metrica:
   data:
     # Possible Values: dataBase | inMemory
     service:
-        inMemory
+        dataBase
        
 
       
