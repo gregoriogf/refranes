@@ -135,4 +135,18 @@ public class RefranInMemoryServiceImpl implements IRefranService {
 		return sortRefranesList(order, busqueda);
 	}
 
+	@Override
+	public Double getMediaCalidadRefranes() {
+		log.log(Level.INFO, "Obteniendo el número de refranes disponibles");
+		Double sum = new Double(0);
+		Double media = new Double(0);
+		List<RefranDTO> listaRefranes = inMemoryRefranes.getRefranes();
+		for (RefranDTO refranDTO : listaRefranes) {
+			sum += refranDTO.getCalidad();
+		}
+		media = Double.valueOf(sum/inMemoryRefranes.getRefranes().size());
+		
+		return media;
+	}
+
 }

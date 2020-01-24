@@ -31,4 +31,6 @@ public interface IRefranDAOService {
 
 	public Optional<List<Refran>> getRefranesUsuarioContieneOrdenado(final String usuario, final String order);
 
+	public Double getMediaCalidadRefranes();
+
 }

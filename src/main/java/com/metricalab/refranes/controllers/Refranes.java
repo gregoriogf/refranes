@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.metricalab.refranes.pojo.MediaCalidadRefranes;
 import com.metricalab.refranes.pojo.NumRefranes;
 import com.metricalab.refranes.pojo.RefranDTO;
 import com.metricalab.refranes.pojo.RefranResponse;
@@ -121,5 +122,12 @@ public class Refranes {
 				usuario, order));
 		return new ResponseEntity<>(refranService.getContainsUsuarioOrder(usuario, order), HttpStatus.OK);
 
+	}
+	
+	
+	@GetMapping("/refranes/mediaCalidad")
+	public ResponseEntity<MediaCalidadRefranes> mediaCalidadRefranes() {
+		log.log(Level.INFO, "Llamada al endpoint /mediaCalidadRefranes ");
+		return new ResponseEntity<>(new MediaCalidadRefranes(refranService.getMediaCalidadRefranes()), HttpStatus.OK);
 	}
 }

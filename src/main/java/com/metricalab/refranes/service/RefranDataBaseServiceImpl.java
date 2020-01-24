@@ -102,4 +102,10 @@ public class RefranDataBaseServiceImpl implements IRefranService {
 
 	}
 
+	@Override
+	public Double getMediaCalidadRefranes() {
+		log.log(Level.INFO, "Obteniendo la media de la calidad de los refranes disponibles");
+		return refranDAOService.getMediaCalidadRefranes();
+	}
+
 }
