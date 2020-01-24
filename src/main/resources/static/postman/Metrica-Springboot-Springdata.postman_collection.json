@@ -231,7 +231,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/metrica/api/refranes/user/sb_memory",
+					"raw": "http://localhost:8090/metrica/api/refranes/mediaCalidad",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -241,8 +241,7 @@
 						"metrica",
 						"api",
 						"refranes",
-						"user",
-						"sb_memory"
+						"mediaCalidad"
 					]
 				}
 			},
@@ -483,7 +482,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://www.juanonlab.com/metricasb/api/refranes/user/sb_postman",
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes/mediaCalidad",
 					"protocol": "https",
 					"host": [
 						"www",
@@ -494,8 +493,7 @@
 						"metricasb",
 						"api",
 						"refranes",
-						"user",
-						"sb_postman"
+						"mediaCalidad"
 					]
 				}
 			},
