@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b739eb49-5843-4d0d-8ca7-90471b040fc2",
+		"_postman_id": "acf61fd4-0bbc-4166-9349-f669a8068eb6",
 		"name": "Metrica-Springboot-Springdata",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -220,6 +220,28 @@
 						"refranes",
 						"user",
 						"sb_memory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local-10-Media Calidad Refranes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/metrica/api/refranes/mediaCalidad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"metrica",
+						"api",
+						"refranes",
+						"mediaCalidad"
 					]
 				}
 			},
@@ -449,6 +471,29 @@
 						"refranes",
 						"user",
 						"sb_postman"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Server-10-Media Calidad Refranes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.juanonlab.com/metricasb/api/refranes/mediaCalidad",
+					"protocol": "https",
+					"host": [
+						"www",
+						"juanonlab",
+						"com"
+					],
+					"path": [
+						"metricasb",
+						"api",
+						"refranes",
+						"mediaCalidad"
 					]
 				}
 			},

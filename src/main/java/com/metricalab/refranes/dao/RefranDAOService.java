@@ -122,4 +122,9 @@ public class RefranDAOService implements IRefranDAOService {
 		return ord;
 
 	}
+
+	@Override
+	public Double getMediaCalidadRefranes() {
+		return repository.avg();
+	}
 }

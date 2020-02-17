@@ -30,4 +30,6 @@ public interface IRefranService {
 
 	public List<RefranDTO> getContainsUsuarioOrder(String usuario, String order);
 
+	public Double getMediaCalidadRefranes();
+
 }
